@@ -21,3 +21,25 @@ export function decrementEnthusiasm(): DecrementEnthusiasm {
         type: constants.DECREMENT_ENTHUSIASM
     };
 }
+
+export interface Login {
+    type: constants.LOGIN;
+}
+
+export function login(): Login {
+    return {
+        type: constants.LOGIN
+    };
+}
+
+export interface Logout {
+    type: constants.LOGOUT;
+}
+
+export function logout(): Logout {
+    return {
+        type: constants.LOGOUT
+    };
+}
+
+export type AuthenticationAction = Login | Logout;
