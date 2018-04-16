@@ -3,7 +3,15 @@ export interface EnthusiasmState {
     enthusiasmLevel: number;
 }
 
-export interface AuthState {
-    authenticated: boolean;
-    userName: string;
+export interface ToggleState {
+    isOn: boolean;
+}
+
+export interface CounterState {
+    count: number;
+}
+
+export interface ApplicationState {
+    enthusiasm?: EnthusiasmState;
+    toggleState?: ToggleState;
 }

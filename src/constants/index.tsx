@@ -4,8 +4,11 @@ export type INCREMENT_ENTHUSIASM = typeof INCREMENT_ENTHUSIASM;
 export const DECREMENT_ENTHUSIASM = 'DECREMENT_ENTHUSIASM';
 export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 
-export const LOGIN = 'LOGIN';
-export type LOGIN = typeof LOGIN;
+export const TOGGLE = 'TOGGLE';
+export type TOGGLE = typeof TOGGLE;
 
-export const LOGOUT = 'LOGOUT';
-export type LOGOUT = typeof LOGOUT;
+export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
+export type INCREMENT_COUNTER = typeof INCREMENT_COUNTER;
+
+export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export type DECREMENT_COUNTER = typeof DECREMENT_COUNTER;

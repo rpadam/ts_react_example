@@ -3,16 +3,18 @@ import * as ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import Hello from './containers/Hello';
-import Authentication from './containers/Authentication';
+import Toggle from './containers/Toggle';
+import Counter from './containers/Counter';
 import { Provider } from 'react-redux';
 
-import { createStore } from 'redux';
-// import { enthusiasm, authentication } from './reducers/index';
-// import { StoreState, AuthState } from './types/index';
-import { rootReducer } from './reducers';
+import { Store, createStore } from 'redux';
 // import { rootReducer } from './reducers';
+import { ToggleState, CounterState } from './types';
+import { toggle } from './reducers/Toggle';
+import { count } from './reducers/Counter';
 
 import * as fb from 'firebase/app';
+// import { ApplicationState } from './types';
 
 require('firebase/firestore');
 require('firebase/auth');
@@ -95,35 +97,62 @@ console.log('Current User', auth.currentUser);
 //   console.log(doc.data());
 // });
 
-const appStore = createStore(
-  rootReducer,
-  {
-    // enthusiasm: {
-    //   enthusiasmLevel: 11,
-    //   languageName: 'TypeScript'
-    // },
-    authentication: {
-      authenticated: false,
-      userName: 'test username',
-    },
-    authenticated: false,
-    userName: '',
-    // enthusiasmLevel: 13,
-    // languageName: 'TypeScript'
-  }
-);
+const store: Store<ToggleState> = createStore<ToggleState>(toggle, {
+  isOn: false,
+});
+console.log(store.getState);
+
+const counterStore: Store<CounterState> = createStore<CounterState>(count, {
+  count: 0,
+});
+
+// const appStore = createStore(
+//   rootReducer,
+//   {
+//     toggle: {
+//       isOn: true
+//     },
+//     isOn: false,
+//     enthusiasmLevel: 3,
+//     languageName: 'poop',
+//     enthusiasm: {
+//       enthusiasmLevel: 11,
+//       languageName: 'TypeScript'
+//     },
+//     authentication: {
+//       authenticated: false,
+//       userName: 'test username',
+//     },
+//     authenticated: false,
+//     userName: '',
+//     // enthusiasmLevel: 13,
+//     // languageName: 'TypeScript'
+//   }
+// );
+
+// const appState: ApplicationState = {
+//   toggleState: {
+//     isOn: true
+//   },
+// };
+
+// const appStore: Store<ApplicationState> = createStore<ApplicationState>(rootReducer, appState
+// );
+
+console.log('appStore', store);
 
 const Root = () => {
   return (
     <React.Fragment>
       <Hello />
-      <Authentication />
+      <Toggle />
+      <Counter />
     </React.Fragment>
   );
 };
 
 ReactDOM.render(
-  <Provider store={appStore} >
+  <Provider store={counterStore} >
     <Root />
   </Provider>,
   document.getElementById('root') as HTMLElement
